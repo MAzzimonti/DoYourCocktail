@@ -14,7 +14,12 @@ if ($conn->connect_error) {
 }
 
 // Funzione per eseguire il file SQL
-function importSQL($filename, $conn) {
+function importSQL($filename, $conn, $dbName) {
+    // Seleziona il database
+    if (!$conn->select_db($dbName)) {
+        die("Errore nella selezione del database: " . $conn->error);
+    }
+
     // Leggi il contenuto del file
     $sql = file_get_contents($filename);
     if ($sql === false) {
@@ -39,9 +44,15 @@ $dbExists = $conn->query("SELECT SCHEMA_NAME FROM INFORMATION_SCHEMA.SCHEMATA WH
 if ($dbExists->num_rows > 0) {
     echo "Il database '$dbName' esiste già. Importazione non necessaria.";
 } else {
+    // Crea il database se non esiste
+    if ($conn->query("CREATE DATABASE $dbName") === true) {
+        echo "Database '$dbName' creato con successo. Procedo con l'importazione.<br>";
+    } else {
+        die("Errore nella creazione del database: " . $conn->error);
+    }
     // Esegui l'importazione del file SQL se il database non esiste
     $filename = 'backup.sql'; // Nome del file SQL da importare
-    importSQL($filename, $conn);
+    importSQL($filename, $conn, $dbName);
 }
 
 // Chiudi la connessione
