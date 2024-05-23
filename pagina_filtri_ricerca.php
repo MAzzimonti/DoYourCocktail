@@ -45,16 +45,17 @@ $result = $stmt->get_result();
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cocktail Database</title>
+    <title>DoyourCocktail</title>
     <style>
         body { font-family: Arial, sans-serif; }
         .search-bar { margin-bottom: 20px; }
         .cocktail-list { margin-top: 20px; }
         .cocktail-item { margin-bottom: 10px; }
+        .home-button { margin-top: 20px; }
     </style>
 </head>
 <body>
-    <h1>Cocktail Database</h1>
+    <h1>DoYourCocktail</h1>
     <form method="GET" action="">
         <div class="search-bar">
             <input type="text" name="search" placeholder="Cerca cocktail..." value="<?php echo htmlspecialchars($search); ?>">
@@ -87,6 +88,10 @@ $result = $stmt->get_result();
         $stmt->close();
         $conn->close();
         ?>
+    </div>
+    
+    <div class="home-button">
+        <a href="home.php"><button>Home</button></a>
     </div>
 </body>
 </html>
