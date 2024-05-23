@@ -2,7 +2,7 @@
 $servername = "localhost";
 $username = "root";
 $password = "";
-$dbname = "cocktail_db"; // Sostituisci con il nome del tuo database
+$dbname = "DoYourCocktail"; // Sostituisci con il nome del tuo database
 
 // Creazione connessione
 $conn = new mysqli($servername, $username, $password, $dbname);
