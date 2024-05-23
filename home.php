@@ -2,12 +2,30 @@
 include 'db_connect.php';
 
 // Query per i drink più recensiti
-$popolari_query = "SELECT * FROM drinks ORDER BY review_count DESC LIMIT 3";
+$popolari_query = "
+    SELECT c.id, c.nome, c.descrizione, c.immagine, COUNT(r.id) AS review_count
+    FROM cocktail c
+    LEFT JOIN recensione r ON c.id = r.id_cocktail
+    GROUP BY c.id
+    ORDER BY review_count DESC
+    LIMIT 3
+";
 $popolari_result = $conn->query($popolari_query);
+if (!$popolari_result) {
+    die("Errore nella query: " . $conn->error);
+}
 
 // Query per le nuove uscite
-$nuove_uscite_query = "SELECT * FROM drinks ORDER BY published_date DESC LIMIT 3";
+$nuove_uscite_query = "
+    SELECT id, nome, descrizione, immagine, data_pubblicazione
+    FROM cocktail
+    ORDER BY data_pubblicazione DESC
+    LIMIT 3
+";
 $nuove_uscite_result = $conn->query($nuove_uscite_query);
+if (!$nuove_uscite_result) {
+    die("Errore nella query: " . $conn->error);
+}
 ?>
 <!DOCTYPE html>
 <html lang="it">
@@ -72,8 +90,9 @@ $nuove_uscite_result = $conn->query($nuove_uscite_query);
         <h2>Popolari</h2>
         <?php while($row = $popolari_result->fetch_assoc()): ?>
             <div class="drink">
-                <h3><?php echo $row['name']; ?></h3>
-                <p><?php echo $row['description']; ?></p>
+                <h3><?php echo htmlspecialchars($row['nome']); ?></h3>
+                <img src="<?php echo htmlspecialchars($row['immagine']); ?>" alt="<?php echo htmlspecialchars($row['nome']); ?>" style="width:100px;">
+                <p><?php echo htmlspecialchars($row['descrizione']); ?></p>
             </div>
         <?php endwhile; ?>
     </div>
@@ -82,8 +101,9 @@ $nuove_uscite_result = $conn->query($nuove_uscite_query);
         <h2>Nuove Uscite</h2>
         <?php while($row = $nuove_uscite_result->fetch_assoc()): ?>
             <div class="drink">
-                <h3><?php echo $row['name']; ?></h3>
-                <p><?php echo $row['description']; ?></p>
+                <h3><?php echo htmlspecialchars($row['nome']); ?></h3>
+                <img src="<?php echo htmlspecialchars($row['immagine']); ?>" alt="<?php echo htmlspecialchars($row['nome']); ?>" style="width:100px;">
+                <p><?php echo htmlspecialchars($row['descrizione']); ?></p>
             </div>
         <?php endwhile; ?>
     </div>
