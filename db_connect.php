@@ -1,11 +1,14 @@
 <?php
-$servername = "localhost";
-$username = "username";
-$password = "password";
-$dbname = "cocktails_db";
+// Configurazione del database
+$host = 'localhost'; // Indirizzo del server MySQL
+$user = 'root'; // Nome utente del database
+$pass = ''; // Password dell'utente del database
+$dbName = 'doyourcocktail'; // Nome del database da verificare
 
-$conn = new mysqli($servername, $username, $password, $dbname);
+// Connessione al server MySQL
+$conn = new mysqli($host, $user, $pass, $dbName);
 
+// Controllo connessione
 if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
+    die("Connessione fallita: " . $conn->connect_error);
 }
