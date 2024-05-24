@@ -60,7 +60,7 @@ $result = $stmt->get_result();
     <div class="header">
         <h1>DoYourCocktail</h1>
         <div class="home-button">
-            <a href="index.php"><button>Home</button></a>
+            <a href="home.php"><button>Home</button></a>
         </div>
     </div>
     <form method="GET" action="">

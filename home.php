@@ -57,8 +57,19 @@ if (!$nuove_uscite_result) {
         .section {
             padding: 20px;
         }
+        .drink-container {
+            display: flex;
+            justify-content: space-between;
+        }
         .drink {
-            margin: 10px 0;
+            width: 30%;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            padding: 10px;
+            text-align: center;
+        }
+        .drink img {
+            width: 100%;
+            height: auto;
         }
         .button-container {
             text-align: center;
@@ -88,24 +99,28 @@ if (!$nuove_uscite_result) {
 
     <div class="section">
         <h2>Popolari</h2>
-        <?php while($row = $popolari_result->fetch_assoc()): ?>
-            <div class="drink">
-                <h3><?php echo htmlspecialchars($row['nome']); ?></h3>
-                <img src="<?php echo htmlspecialchars($row['immagine']); ?>" alt="<?php echo htmlspecialchars($row['nome']); ?>" style="width:100px;">
-                <p><?php echo htmlspecialchars($row['descrizione']); ?></p>
-            </div>
-        <?php endwhile; ?>
+        <div class="drink-container">
+            <?php while($row = $popolari_result->fetch_assoc()): ?>
+                <div class="drink">
+                    <h3><?php echo htmlspecialchars($row['nome']); ?></h3>
+                    <img src="<?php echo htmlspecialchars($row['immagine']); ?>" alt="<?php echo htmlspecialchars($row['nome']); ?>">
+                    <p><?php echo htmlspecialchars($row['descrizione']); ?></p>
+                </div>
+            <?php endwhile; ?>
+        </div>
     </div>
 
     <div class="section">
         <h2>Nuove Uscite</h2>
-        <?php while($row = $nuove_uscite_result->fetch_assoc()): ?>
-            <div class="drink">
-                <h3><?php echo htmlspecialchars($row['nome']); ?></h3>
-                <img src="<?php echo htmlspecialchars($row['immagine']); ?>" alt="<?php echo htmlspecialchars($row['nome']); ?>" style="width:100px;">
-                <p><?php echo htmlspecialchars($row['descrizione']); ?></p>
-            </div>
-        <?php endwhile; ?>
+        <div class="drink-container">
+            <?php while($row = $nuove_uscite_result->fetch_assoc()): ?>
+                <div class="drink">
+                    <h3><?php echo htmlspecialchars($row['nome']); ?></h3>
+                    <img src="<?php echo htmlspecialchars($row['immagine']); ?>" alt="<?php echo htmlspecialchars($row['nome']); ?>">
+                    <p><?php echo htmlspecialchars($row['descrizione']); ?></p>
+                </div>
+            <?php endwhile; ?>
+        </div>
     </div>
 
     <div class="button-container">
