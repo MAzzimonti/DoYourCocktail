@@ -57,7 +57,7 @@ $result = $stmt->get_result();
     </style>
 </head>
 <body>
-    <div class="header">    //bottone spostato a in alto a destra
+    <div class="header">
         <h1>DoYourCocktail</h1>
         <div class="home-button">
             <a href="index.php"><button>Home</button></a>
