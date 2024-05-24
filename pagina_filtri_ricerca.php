@@ -45,17 +45,24 @@ $result = $stmt->get_result();
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>DoyourCocktail</title>
+    <title>DoYourCocktail</title>
     <style>
         body { font-family: Arial, sans-serif; }
+        .header { display: flex; justify-content: space-between; align-items: center; }
         .search-bar { margin-bottom: 20px; }
         .cocktail-list { margin-top: 20px; }
         .cocktail-item { margin-bottom: 10px; }
         .home-button { margin-top: 20px; }
+        .home-button a { text-decoration: none; }
     </style>
 </head>
 <body>
-    <h1>DoYourCocktail</h1>
+    <div class="header">    //bottone spostato a in alto a destra
+        <h1>DoYourCocktail</h1>
+        <div class="home-button">
+            <a href="index.php"><button>Home</button></a>
+        </div>
+    </div>
     <form method="GET" action="">
         <div class="search-bar">
             <input type="text" name="search" placeholder="Cerca cocktail..." value="<?php echo htmlspecialchars($search); ?>">
@@ -89,9 +96,7 @@ $result = $stmt->get_result();
         $conn->close();
         ?>
     </div>
-    
-    <div class="home-button">
-        <a href="home.php"><button>Home</button></a>
-    </div>
 </body>
 </html>
+
+
