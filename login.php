@@ -19,7 +19,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $_SESSION['user_id'] = $row['id'];
             $_SESSION['nome'] = $row['nome'];
             $_SESSION['cognome'] = $row['cognome'];
-            echo "Login effettuato con successo.";
+            echo "<script>
+                    alert('Login effettuato con successo.');
+                    window.location.href = 'home.php';
+                  </script>";
+            exit(); // Assicurarsi che il codice si fermi dopo il reindirizzamento
         } else {
             echo "Email o password errati.";
         }

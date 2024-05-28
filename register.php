@@ -17,7 +17,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $stmt->bind_param("ssss", $nome, $cognome, $email, $hashed_password);
 
     if ($stmt->execute()) {
-        echo "Registrazione completata con successo.";
+        echo "<script>
+                alert('Registrazione completata con successo.');
+                window.location.href = 'login.php';
+              </script>";
+        exit(); // Assicurarsi che il codice si fermi dopo il reindirizzamento
     } else {
         echo "Errore durante la registrazione: " . $stmt->error;
     }
@@ -35,11 +39,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     <title>Registrazione - DoYourCocktail</title>
     <style>
         body { font-family: Arial, sans-serif; }
-        .header { display: flex; justify-content: space-between; align-items: center; padding: 10px; background-color: #f8f9fa; }
-        .form-container { max-width: 400px; margin: 50px auto; padding: 20px; border: 1px solid #ccc; border-radius: 10px; background-color: #fff; }
+        .header { display: flex; justify-content: space-between; align-items: center; }
+        .form-container { max-width: 400px; margin: 50px auto; padding: 20px; border: 1px solid #ccc; border-radius: 10px; }
         .form-group { margin-bottom: 15px; }
         .form-group label { display: block; margin-bottom: 5px; }
-        .form-group input { width: calc(100% - 40px); padding: 10px; }
+        .form-group input { width: calc(100% - 40px); padding: 10px; margin-right: -40px; }
         .form-group .show-password { width: 40px; }
         .home-button { margin-top: 20px; }
         .home-button a { text-decoration: none; }
