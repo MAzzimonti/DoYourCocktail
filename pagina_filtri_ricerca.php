@@ -1,4 +1,5 @@
 <?php
+session_start();
 $servername = "localhost";
 $username = "root";
 $password = "";
@@ -109,8 +110,13 @@ $result = $stmt->get_result();
             <span>DoYourCocktail</span>
         </div>
         <div class="auth-buttons">
-            <a href="login.php">Login</a>
-            <a href="register.php">Registrazione</a>
+            <?php if (isset($_SESSION['user_id'])): ?>
+                <a href="inserisci_cocktail.php">Inserisci Cocktail</a>
+                <a href="profilo.php">Profilo</a>
+            <?php else: ?>
+                <a href="login.php">Login</a>
+                <a href="register.php">Registrazione</a>
+            <?php endif; ?>
             <a href="home.php">Home</a>
         </div>
     </div>
@@ -151,5 +157,11 @@ $result = $stmt->get_result();
             ?>
         </div>
     </div>
+
+    <?php if (isset($_SESSION['user_id'])): ?>
+        <div class="home-button">
+            <a href="logout.php">Logout</a>
+        </div>
+    <?php endif; ?>
 </body>
 </html>

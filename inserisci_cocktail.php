@@ -1,42 +1,8 @@
 <?php
 session_start();
-
-if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] !== true) {
-    header("Location: login.php");
-    exit;
-}
-
-$servername = "localhost";
-$username = "root";
-$password = "";
-$dbname = "cocktail_db";
-
-// Creazione connessione
-$conn = new mysqli($servername, $username, $password, $dbname);
-
-// Controlla la connessione
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
-}
-
-if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    $nome = $_POST['nome'];
-    $descrizione = $_POST['descrizione'];
-    $data_pubblicazione = date('Y-m-d');
-    $immagine = $_POST['immagine'];
-
-    $sql = "INSERT INTO cocktail (nome, descrizione, data_pubblicazione, immagine) VALUES (?, ?, ?, ?)";
-    $stmt = $conn->prepare($sql);
-    $stmt->bind_param("ssss", $nome, $descrizione, $data_pubblicazione, $immagine);
-
-    if ($stmt->execute()) {
-        echo "Cocktail inserito con successo!";
-    } else {
-        echo "Errore: " . $stmt->error;
-    }
-
-    $stmt->close();
-    $conn->close();
+if (!isset($_SESSION['user_id'])) {
+    header('Location: login.php');
+    exit();
 }
 ?>
 
@@ -45,19 +11,31 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Inserisci Cocktail</title>
+    <title>Inserisci Cocktail - DoYourCocktail</title>
+    <style>
+        body { font-family: Arial, sans-serif; }
+        .form-container { max-width: 400px; margin: 50px auto; padding: 20px; border: 1px solid #ccc; border-radius: 10px; }
+        .form-group { margin-bottom: 15px; }
+        .form-group label { display: block; margin-bottom: 5px; }
+        .form-group input, .form-group textarea { width: calc(100% - 20px); padding: 10px; margin-right: -20px; }
+        button { padding: 10px 20px; background-color: #007BFF; color: white; border: none; border-radius: 5px; cursor: pointer; }
+        button:hover { background-color: #0056b3; }
+    </style>
 </head>
 <body>
-    <h1>Inserisci un nuovo Cocktail</h1>
-    <form method="POST" action="">
-        <label for="nome">Nome:</label><br>
-        <input type="text" id="nome" name="nome" required><br><br>
-        <label for="descrizione">Descrizione:</label><br>
-        <textarea id="descrizione" name="descrizione" required></textarea><br><br>
-        <label for="immagine">Immagine (URL):</label><br>
-        <input type="text" id="immagine" name="immagine"><br><br>
-        <button type="submit">Inserisci</button>
-    </form>
-    <a href="index.php"><button>Torna alla Home</button></a>
+    <div class="form-container">
+        <h1>Inserisci Cocktail</h1>
+        <form method="POST" action="process_insert_cocktail.php">
+            <div class="form-group">
+                <label for="nome">Nome del Cocktail</label>
+                <input type="text" id="nome" name="nome" required>
+            </div>
+            <div class="form-group">
+                <label for="descrizione">Descrizione</label>
+                <textarea id="descrizione" name="descrizione" required></textarea>
+            </div>
+            <button type="submit">Inserisci</button>
+        </form>
+    </div>
 </body>
 </html>

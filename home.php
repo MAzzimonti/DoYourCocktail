@@ -1,4 +1,5 @@
 <?php
+session_start();
 include 'db_connect.php';
 
 // Query per i drink più recensiti
@@ -82,6 +83,10 @@ if (!$nuove_uscite_result) {
             color: white;
             border-radius: 5px;
         }
+        .logout-container {
+            text-align: center;
+            margin: 20px;
+        }
     </style>
 </head>
 <body>
@@ -91,8 +96,13 @@ if (!$nuove_uscite_result) {
             <span>DoYourCocktail</span>
         </div>
         <div class="auth-buttons">
-            <a href="login.php">Login</a>
-            <a href="register.php">Registrazione</a>
+            <?php if (isset($_SESSION['user_id'])): ?>
+                <a href="inserisci_cocktail.php">Inserisci Cocktail</a>
+                <a href="profilo.php">Profilo</a>
+            <?php else: ?>
+                <a href="login.php">Login</a>
+                <a href="register.php">Registrazione</a>
+            <?php endif; ?>
             <a href="pagina_filtri_ricerca.php">Filtri di Ricerca</a>
         </div>
     </div>
@@ -124,8 +134,14 @@ if (!$nuove_uscite_result) {
     </div>
 
     <div class="button-container">
-        <a href="all_drinks.php">Mostra tutti</a>
+        <a href="pagina_filtri_ricerca.php">Mostra tutti</a>
     </div>
+
+    <?php if (isset($_SESSION['user_id'])): ?>
+        <div class="logout-container">
+            <a href="logout.php">Logout</a>
+        </div>
+    <?php endif; ?>
 </body>
 </html>
 <?php

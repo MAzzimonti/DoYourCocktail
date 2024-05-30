@@ -1,28 +1,18 @@
 <?php
 session_start();
-
-if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] !== true) {
-    header("Location: login.php");
-    exit;
+if (!isset($_SESSION['user_id'])) {
+    header('Location: login.php');
+    exit();
 }
 
-$servername = "localhost";
-$username = "root";
-$password = "";
-$dbname = "cocktail_db";
+// Connettersi al database
+require 'db_connect.php';
 
-// Creazione connessione
-$conn = new mysqli($servername, $username, $password, $dbname);
-
-// Controlla la connessione
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
-}
-
-$userId = $_SESSION['id'];
+// Recuperare i dati dell'utente
+$user_id = $_SESSION['user_id'];
 $sql = "SELECT nome, cognome, email FROM utente WHERE id = ?";
 $stmt = $conn->prepare($sql);
-$stmt->bind_param("i", $userId);
+$stmt->bind_param("i", $user_id);
 $stmt->execute();
 $stmt->bind_result($nome, $cognome, $email);
 $stmt->fetch();
@@ -35,14 +25,29 @@ $conn->close();
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Profilo Utente</title>
+    <title>Profilo - DoYourCocktail</title>
+    <style>
+        body { font-family: Arial, sans-serif; }
+        .profile-container { max-width: 400px; margin: 50px auto; padding: 20px; border: 1px solid #ccc; border-radius: 10px; }
+        .profile-group { margin-bottom: 15px; }
+        .profile-group label { display: block; margin-bottom: 5px; }
+    </style>
 </head>
 <body>
-    <h1>Profilo Utente</h1>
-    <p><strong>Nome:</strong> <?php echo htmlspecialchars($nome); ?></p>
-    <p><strong>Cognome:</strong> <?php echo htmlspecialchars($cognome); ?></p>
-    <p><strong>Email:</strong> <?php echo htmlspecialchars($email); ?></p>
-    <a href="logout.php"><button>Logout</button></a>
-    <a href="index.php"><button>Torna alla Home</button></a>
+    <div class="profile-container">
+        <h1>Profilo</h1>
+        <div class="profile-group">
+            <label>Nome:</label>
+            <p><?php echo htmlspecialchars($nome); ?></p>
+        </div>
+        <div class="profile-group">
+            <label>Cognome:</label>
+            <p><?php echo htmlspecialchars($cognome); ?></p>
+        </div>
+        <div class="profile-group">
+            <label>Email:</label>
+            <p><?php echo htmlspecialchars($email); ?></p>
+        </div>
+    </div>
 </body>
 </html>
