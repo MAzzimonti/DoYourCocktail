@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 30, 2024 at 12:27 PM
+-- Generation Time: May 23, 2024 at 01:19 PM
 -- Server version: 10.4.25-MariaDB
 -- PHP Version: 8.1.10
 
@@ -46,7 +46,7 @@ INSERT INTO `cocktail` (`id`, `nome`, `descrizione`, `data_pubblicazione`, `imma
 (4, 'Pina Colada', 'Un cocktail tropicale a base di rum, crema di cocco e succo di ananas.', '2024-05-04', 'pinacolada.jpg'),
 (5, 'Cosmopolitan', 'Un cocktail alla moda a base di vodka, triple sec, succo di lime e cranberry.', '2024-05-05', 'cosmopolitan.jpg'),
 (6, 'Bloody Mary', 'Un cocktail salato a base di vodka, succo di pomodoro e spezie.', '2024-05-06', 'bloodymary.jpg'),
-(7, 'Mai Tai', 'Un cocktail esotico a base di rum, curaçao e lime.', '2024-05-07', 'maitai.jpg'),
+(7, 'Mai Tai', 'Un cocktail esotico a base di rum, cura?ao e lime.', '2024-05-07', 'maitai.jpg'),
 (8, 'Old Fashioned', 'Un cocktail classico a base di bourbon o rye whiskey, zucchero, angostura e una spruzzata di acqua.', '2024-05-08', 'oldfashioned.jpg');
 
 -- --------------------------------------------------------
@@ -154,16 +154,14 @@ CREATE TABLE `utente` (
 --
 
 INSERT INTO `utente` (`id`, `nome`, `cognome`, `email`, `password`) VALUES
-(1, 'Mario', 'Rossi', 'mario.rossi@example.com', '$2y$10$32OsbrJDFXdsLRopVx5BvemmHh.HBulTjSbHBsr/LkFY/SK0nzNbq'),
-(2, 'Luigi', 'Verdi', 'luigi.verdi@example.com', '$2y$10$32OsbrJDFXdsLRopVx5BvemmHh.HBulTjSbHBsr/LkFY/SK0nzNbq'),
-(3, 'Anna', 'Bianchi', 'anna.bianchi@example.com', '$2y$10$32OsbrJDFXdsLRopVx5BvemmHh.HBulTjSbHBsr/LkFY/SK0nzNbq'),
-(4, 'Giulia', 'Neri', 'giulia.neri@example.com', '$2y$10$32OsbrJDFXdsLRopVx5BvemmHh.HBulTjSbHBsr/LkFY/SK0nzNbq'),
-(5, 'Paolo', 'Blu', 'paolo.blu@example.com', '$2y$10$32OsbrJDFXdsLRopVx5BvemmHh.HBulTjSbHBsr/LkFY/SK0nzNbq'),
-(6, 'Francesca', 'Viola', 'francesca.viola@example.com', '$2y$10$32OsbrJDFXdsLRopVx5BvemmHh.HBulTjSbHBsr/LkFY/SK0nzNbq'),
-(7, 'Marco', 'Gialli', 'marco.gialli@example.com', '$2y$10$32OsbrJDFXdsLRopVx5BvemmHh.HBulTjSbHBsr/LkFY/SK0nzNbq'),
-(8, 'Elisa', 'Rosa', 'elisa.rosa@example.com', '$2y$10$32OsbrJDFXdsLRopVx5BvemmHh.HBulTjSbHBsr/LkFY/SK0nzNbq'),
-(9, 'mario', 'rossi', 'mario.rossi@email.com', '$2y$10$32OsbrJDFXdsLRopVx5BvemmHh.HBulTjSbHBsr/LkFY/SK0nzNbq'),
-(10, 'paolo', 'pertozzi', 'ppetroz@email.com', '$2y$10$92XdYbARCEGc.nyArPI0eO6Gfzfuw8DXaARw7Ca0fq8hmCFmSGy.S');
+(1, 'Mario', 'Rossi', 'mario.rossi@example.com', 'password1'),
+(2, 'Luigi', 'Verdi', 'luigi.verdi@example.com', 'password2'),
+(3, 'Anna', 'Bianchi', 'anna.bianchi@example.com', 'password3'),
+(4, 'Giulia', 'Neri', 'giulia.neri@example.com', 'password4'),
+(5, 'Paolo', 'Blu', 'paolo.blu@example.com', 'password5'),
+(6, 'Francesca', 'Viola', 'francesca.viola@example.com', 'password6'),
+(7, 'Marco', 'Gialli', 'marco.gialli@example.com', 'password7'),
+(8, 'Elisa', 'Rosa', 'elisa.rosa@example.com', 'password8');
 
 --
 -- Indexes for dumped tables
@@ -229,7 +227,7 @@ ALTER TABLE `recensione`
 -- AUTO_INCREMENT for table `utente`
 --
 ALTER TABLE `utente`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- Constraints for dumped tables
