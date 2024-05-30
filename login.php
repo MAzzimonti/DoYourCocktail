@@ -49,7 +49,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         .form-group { margin-bottom: 15px; }
         .form-group label { display: block; margin-bottom: 5px; }
         .form-group input { width: calc(100% - 40px); padding: 10px; }
-        .form-group .show-password { width: 40px; }
+        .form-group .show-password { width: 40px; display:flex; align-items: center; justify-content: center;}
         .home-button { margin-top: 20px; }
         .home-button a { text-decoration: none; }
         button { padding: 10px 20px; background-color: #007BFF; color: white; border: none; border-radius: 5px; cursor: pointer; }
