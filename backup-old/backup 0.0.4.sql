@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 31, 2024 at 12:02 PM
+-- Generation Time: May 30, 2024 at 12:27 PM
 -- Server version: 10.4.25-MariaDB
 -- PHP Version: 8.1.10
 
@@ -32,7 +32,7 @@ CREATE TABLE `cocktail` (
   `nome` varchar(100) NOT NULL,
   `descrizione` text DEFAULT NULL,
   `data_pubblicazione` date DEFAULT NULL,
-  `immagine` varchar(500) DEFAULT NULL
+  `immagine` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
@@ -40,16 +40,14 @@ CREATE TABLE `cocktail` (
 --
 
 INSERT INTO `cocktail` (`id`, `nome`, `descrizione`, `data_pubblicazione`, `immagine`) VALUES
-(1, 'Margarita', 'Un cocktail classico a base di tequila.', '2024-05-01', 'https://www.liquor.com/thmb/JQgDGy26Zsw-_cFGKH4zNH9PlXk=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/Frozen-Margarita-1500x1500-hero-191e49b3ab4f4781b93f3cfacac25136.jpg'),
-(2, 'Mojito', 'Un cocktail rinfrescante a base di rum.', '2024-05-02', 'https://www.liquor.com/thmb/YpqB1r-9gnFhwAussUCpce1lLOg=/380x380/filters:no_upscale():max_bytes(150000):strip_icc():format(webp)/mojito-720x720-primary-6a57f80e200c412e9a77a1687f312ff7.jpg'),
-(3, 'Negroni', 'Un cocktail italiano a base di gin.', '2024-05-03', 'https://www.liquor.com/thmb/C6JZ5taVlV4QTNhHYKp1okXktKI=/380x380/filters:no_upscale():max_bytes(150000):strip_icc():format(webp)/mezcal-negroni-1500x1000-recirc-d5ddef0aa85b42e68314e7b63053b161.jpg'),
-(4, 'Pina Colada', 'Un cocktail tropicale a base di rum, crema di cocco e succo di ananas.', '2024-05-04', 'https://www.liquor.com/thmb/DerqrcPWPIxisMu-26s09OmRfzI=/750x0/filters:no_upscale():max_bytes(150000):strip_icc():format(webp)/__opt__aboutcom__coeus__resources__content_migration__liquor__2019__02__13090826__pina-colada-720x720-recipe-253f1752769447f6998afd2b9469c24e.jpg'),
-(5, 'Cosmopolitan', 'Un cocktail alla moda a base di vodka, triple sec, succo di lime e cranberry.', '2024-05-05', 'https://www.liquor.com/thmb/4dacqxmtg4VVqtbAQyrkTYgm5i0=/380x380/filters:no_upscale():max_bytes(150000):strip_icc():format(webp)/cosmopolitan-720x720-primary-0190d40114c741648979dae7e46b6bbf.jpg'),
-(6, 'Bloody Mary', 'Un cocktail salato a base di vodka, succo di pomodoro e spezie.', '2024-05-06', 'https://www.liquor.com/thmb/EzzovUgC5ap4-01dfBynHRf-N74=/380x380/filters:no_upscale():max_bytes(150000):strip_icc():format(webp)/__opt__aboutcom__coeus__resources__content_migration__liquor__2017__09__01105541__classic-bloody-mary-720x720-recipe-22e93e6d3426461fa89ffc946640c58c.jpg'),
-(7, 'Mai Tai', 'Un cocktail esotico a base di rum, curaçao e lime.', '2024-05-07', 'https://www.liquor.com/thmb/niQ0ypSmgLoIeDSfRn6PXOVLwnA=/380x380/filters:no_upscale():max_bytes(150000):strip_icc():format(webp)/mai-tai-720x720-primary-e09e24f1cacd4b3896f5aa32ba51dcdd.jpg'),
-(8, 'Old Fashioned', 'Un cocktail classico a base di bourbon o rye whiskey, zucchero, angostura e una spruzzata di acqua.', '2024-05-08', 'https://www.liquor.com/thmb/IDC-6UhB3JDcxl8yLWqpZ1Huboc=/380x380/filters:no_upscale():max_bytes(150000):strip_icc():format(webp)/irish-old-fashioned-720x720-primary-f0d461dd890b47d693d4a55460b8cc0b.jpg'),
-(9, 'Arlind', 'drink a base di Jägermeister e RedBull', '2024-05-31', 'https://www.liquor.com/thmb/XqLFuwlGSTNS-egoLXvPuSr_FRM=/380x380/filters:no_upscale():max_bytes(150000):strip_icc():format(webp)/jager-bomb-720x720-primary-a7c6f966c5134d14bd08a1d60d1c02e1.jpg'),
-(10, 'long island', 'cocktail statunitense a base di vodka, gin, rum bianco, tequila e triple sec', '2024-05-31', 'https://www.liquor.com/thmb/1Te5e0TriR0S3xV7Btwp4e-6-tw=/380x380/filters:no_upscale():max_bytes(150000):strip_icc():format(webp)/__opt__aboutcom__coeus__resources__content_migration__liquor__2017__12__05092120__Death-Star-720x720-recipe-8ca225ab99504d129cacf2f960d37041.jpg');
+(1, 'Margarita', 'Un cocktail classico a base di tequila.', '2024-05-01', 'margarita.jpg'),
+(2, 'Mojito', 'Un cocktail rinfrescante a base di rum.', '2024-05-02', 'mojito.jpg'),
+(3, 'Negroni', 'Un cocktail italiano a base di gin.', '2024-05-03', 'negroni.jpg'),
+(4, 'Pina Colada', 'Un cocktail tropicale a base di rum, crema di cocco e succo di ananas.', '2024-05-04', 'pinacolada.jpg'),
+(5, 'Cosmopolitan', 'Un cocktail alla moda a base di vodka, triple sec, succo di lime e cranberry.', '2024-05-05', 'cosmopolitan.jpg'),
+(6, 'Bloody Mary', 'Un cocktail salato a base di vodka, succo di pomodoro e spezie.', '2024-05-06', 'bloodymary.jpg'),
+(7, 'Mai Tai', 'Un cocktail esotico a base di rum, curaçao e lime.', '2024-05-07', 'maitai.jpg'),
+(8, 'Old Fashioned', 'Un cocktail classico a base di bourbon o rye whiskey, zucchero, angostura e una spruzzata di acqua.', '2024-05-08', 'oldfashioned.jpg');
 
 -- --------------------------------------------------------
 
@@ -135,9 +133,7 @@ INSERT INTO `recensione` (`id`, `valutazione`, `commento`, `data_recensione`, `i
 (2, 4, 'Molto buono, ma un po\' troppo dolce per i miei gusti.', '2024-05-11', 2, 2),
 (3, 3, 'Niente di speciale, ma comunque rinfrescante.', '2024-05-12', 2, 3),
 (4, 5, 'Un classico senza tempo!', '2024-05-13', 3, 1),
-(5, 4, 'Ottimo, ma il gin ? un po\' troppo forte.', '2024-05-14', 3, 2),
-(16, 4, 'molto buono', '2024-05-31', 3, 10),
-(17, 4, 'molto buono', '2024-05-31', 3, 10);
+(5, 4, 'Ottimo, ma il gin ? un po\' troppo forte.', '2024-05-14', 3, 2);
 
 -- --------------------------------------------------------
 
@@ -215,7 +211,7 @@ ALTER TABLE `utente`
 -- AUTO_INCREMENT for table `cocktail`
 --
 ALTER TABLE `cocktail`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `ingredienti`
@@ -227,7 +223,7 @@ ALTER TABLE `ingredienti`
 -- AUTO_INCREMENT for table `recensione`
 --
 ALTER TABLE `recensione`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- AUTO_INCREMENT for table `utente`
