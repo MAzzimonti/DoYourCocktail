@@ -21,7 +21,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $_SESSION['cognome'] = $row['cognome'];
             echo "<script>
                     alert('Login effettuato con successo.');
-                    window.location.href = 'home.php';
+                    window.location.href = 'index.php';
                   </script>";
             exit(); // Assicurarsi che il codice si fermi dopo il reindirizzamento
         } else {
@@ -60,7 +60,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     <div class="header">
         <h1>DoYourCocktail</h1>
         <div class="home-button">
-            <a href="home.php"><button>Home</button></a>
+            <a href="index.php"><button>Home</button></a>
         </div>
     </div>
     <div class="form-container">

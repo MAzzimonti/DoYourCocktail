@@ -117,7 +117,7 @@ $result = $stmt->get_result();
                 <a href="login.php">Login</a>
                 <a href="register.php">Registrazione</a>
             <?php endif; ?>
-            <a href="home.php">Home</a>
+            <a href="index.php">Home</a>
         </div>
     </div>
     

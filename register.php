@@ -55,7 +55,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     <div class="header">
         <h1>DoYourCocktail</h1>
         <div class="home-button">
-            <a href="home.php"><button>Home</button></a>
+            <a href="index.php"><button>Home</button></a>
         </div>
     </div>
     <div class="form-container">
