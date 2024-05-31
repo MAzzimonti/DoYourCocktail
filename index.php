@@ -159,17 +159,22 @@ if (!$nuove_uscite_result) {
     </div>
 
     <div class="section">
-        <h2>Popolari</h2>
-        <div class="drink-container">
-            <?php while($row = $popolari_result->fetch_assoc()): ?>
-                <div class="drink">
-                    <h3><?php echo htmlspecialchars($row['nome']); ?></h3>
-                    <img src="<?php echo htmlspecialchars($row['immagine']); ?>" alt="<?php echo htmlspecialchars($row['nome']); ?>">
-                    <p><?php echo htmlspecialchars($row['descrizione']); ?></p>
-                </div>
-            <?php endwhile; ?>
-        </div>
+    <h2>Popolari</h2>
+    <div class="drink-container">
+        <?php while($row = $popolari_result->fetch_assoc()): ?>
+            <div class="drink">
+                <h3><?php echo htmlspecialchars($row['nome']); ?></h3>
+                <img src="<?php echo htmlspecialchars($row['immagine']); ?>" alt="<?php echo htmlspecialchars($row['nome']); ?>">
+                <p><?php echo htmlspecialchars($row['descrizione']); ?></p>
+                <form method="GET" action="visualizza_recensioni.php">
+                    <input type="hidden" name="cocktail_id" value="<?php echo $row['id']; ?>">
+                    <button type="submit">Visualizza Recensioni</button>
+                </form>
+            </div>
+        <?php endwhile; ?>
     </div>
+</div>
+
 
     <div class="section">
         <h2>Nuove Uscite</h2>
@@ -179,6 +184,9 @@ if (!$nuove_uscite_result) {
                     <h3><?php echo htmlspecialchars($row['nome']); ?></h3>
                     <img src="<?php echo htmlspecialchars($row['immagine']); ?>" alt="<?php echo htmlspecialchars($row['nome']); ?>">
                     <p><?php echo htmlspecialchars($row['descrizione']); ?></p>
+                    <form method="GET" action="visualizza_recensioni.php">
+                    <input type="hidden" name="cocktail_id" value="<?php echo $row['id']; ?>">
+                    <button type="submit">Visualizza Recensioni</button>
                 </div>
             <?php endwhile; ?>
         </div>
