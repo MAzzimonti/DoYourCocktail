@@ -1,11 +1,3 @@
-<?php
-session_start();
-if (!isset($_SESSION['user_id'])) {
-    header('Location: login.php');
-    exit();
-}
-?>
-
 <!DOCTYPE html>
 <html lang="it">
 <head>
@@ -33,6 +25,10 @@ if (!isset($_SESSION['user_id'])) {
             <div class="form-group">
                 <label for="descrizione">Descrizione</label>
                 <textarea id="descrizione" name="descrizione" required></textarea>
+            </div>
+            <div class="form-group">
+                <label for="immagine">Link dell'Immagine</label>
+                <input type="text" id="immagine" name="immagine" required>
             </div>
             <button type="submit">Inserisci</button>
         </form>
