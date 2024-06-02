@@ -57,6 +57,7 @@ $result = $stmt->get_result();
             display: flex;
             flex-wrap: wrap;
             gap: 20px;
+            justify-content: center;
         }
         .cocktail-item {
             width: 30%;
@@ -78,6 +79,46 @@ $result = $stmt->get_result();
             background-color: #007BFF;
             color: white;
             border-radius: 5px;
+        }
+        .drink-container {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 20px; /* Spazio tra i drink */
+        }
+
+        .drink {
+            width: 30%; /* 30% della larghezza della pagina */
+            box-sizing: border-box;
+            text-align: center;
+        }
+
+        .drink img {
+            width: 100%;
+            height: auto;
+            aspect-ratio: 1 / 1; /* Rende l'immagine quadrata */
+            object-fit: cover; /* Taglia l'immagine per riempire il contenitore mantenendo le proporzioni */
+            margin-bottom: 10px;
+        }
+
+        .drink h3 {
+            margin: 10px 0;
+        }
+
+        .drink p {
+            margin: 5px 0;
+        }
+
+        .drink button {
+            padding: 10px 20px;
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .drink button:hover {
+            background-color: #0056b3;
         }
     </style>
 </head>

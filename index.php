@@ -127,6 +127,47 @@ if (!$nuove_uscite_result) {
             text-align: center;
             margin: 20px;
         }
+        .drink-container {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 20px; /* Spazio tra i drink */
+        }
+
+        .drink {
+            width: 30%; /* 30% della larghezza della pagina */
+            box-sizing: border-box;
+            text-align: center;
+        }
+
+        .drink img {
+            width: 100%;
+            height: auto;
+            aspect-ratio: 1 / 1; /* Rende l'immagine quadrata */
+            object-fit: cover; /* Taglia l'immagine per riempire il contenitore mantenendo le proporzioni */
+            margin-bottom: 10px;
+        }
+
+        .drink h3 {
+            margin: 10px 0;
+        }
+
+        .drink p {
+            margin: 5px 0;
+        }
+
+        .drink button {
+            padding: 10px 20px;
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .drink button:hover {
+            background-color: #0056b3;
+        }
+</style>
     </style>
 </head>
 <body>
@@ -147,18 +188,18 @@ if (!$nuove_uscite_result) {
     </div>
 
     <div class="section">
-        <h2>Popolari</h2>
-        <div class="drink-container">
-            <?php while($row = $popolari_result->fetch_assoc()): ?>
-                <div class="drink">
-                    <h3><?php echo htmlspecialchars($row['nome']); ?></h3>
-                    <img src="<?php echo htmlspecialchars($row['immagine']); ?>" alt="<?php echo htmlspecialchars($row['nome']); ?>">
-                    <p><?php echo htmlspecialchars($row['descrizione']); ?></p>
-                    <p>Media valutazioni: <?php echo round($row['valutazione_media'], 1); ?></p>
-                    <form method="GET" action="visualizza_recensioni.php">
-                        <input type="hidden" name="cocktail_id" value="<?php echo $row['id']; ?>">
-                        <button type="submit">Visualizza Recensioni</button>
-                    </form>
+    <h2>Popolari</h2>
+    <div class="drink-container">
+        <?php while($row = $popolari_result->fetch_assoc()): ?>
+            <div class="drink">
+                <h3><?php echo htmlspecialchars($row['nome']); ?></h3>
+                <img src="<?php echo htmlspecialchars($row['immagine']); ?>" alt="<?php echo htmlspecialchars($row['nome']); ?>">
+                <p><?php echo htmlspecialchars($row['descrizione']); ?></p>
+                <p>Media valutazioni: <?php echo round($row['valutazione_media'], 1); ?></p>
+                <form method="GET" action="visualizza_recensioni.php">
+                    <input type="hidden" name="cocktail_id" value="<?php echo $row['id']; ?>">
+                    <button type="submit">Visualizza Recensioni</button>
+                </form>
                 </div>
             <?php endwhile; ?>
         </div>
