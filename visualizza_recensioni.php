@@ -7,15 +7,7 @@ if (!isset($_SESSION['user_id'])) {
     exit();
 }
 
-// Connessione al database
-$host = '127.0.0.1';
-$user = 'root';
-$pass = '';
-$dbName = 'DoYourCocktail';
-$conn = new mysqli($host, $user, $pass, $dbName);
-if ($conn->connect_error) {
-    die("Connessione fallita: " . $conn->connect_error);
-}
+include 'db_connect.php';
 
 // Preparazione della query per recuperare le recensioni del cocktail specificato, ordinate per data decrescente
 $cocktail_id = $_GET['cocktail_id'];

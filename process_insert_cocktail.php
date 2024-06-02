@@ -5,19 +5,7 @@ if (!isset($_SESSION['user_id'])) {
     exit();
 }
 
-// Configurazione del database
-$host = 'localhost';
-$user = 'root';
-$pass = '';
-$dbName = 'DoYourCocktail';
-
-// Connessione al server MySQL
-$conn = new mysqli($host, $user, $pass, $dbName);
-
-// Controllo connessione
-if ($conn->connect_error) {
-    die("Connessione fallita: " . $conn->connect_error);
-}
+include 'db_connect.php';
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $nome = $conn->real_escape_string($_POST['nome']);
