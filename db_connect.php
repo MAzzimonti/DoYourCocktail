@@ -3,7 +3,7 @@
 $host = 'localhost'; // Indirizzo del server MySQL
 $user = 'root'; // Nome utente del database
 $pass = ''; // Password dell'utente del database
-$dbName = 'doyourcocktail'; // Nome del database da verificare
+$dbName = 'doyourcocktail'; // Nome del database
 
 // Connessione al server MySQL
 $conn = new mysqli($host, $user, $pass, $dbName);

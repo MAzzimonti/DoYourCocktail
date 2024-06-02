@@ -1,19 +1,6 @@
 <?php
 session_start();
-
-// Configurazione del database
-$host = 'localhost';
-$user = 'root';
-$pass = '';
-$dbName = 'DoYourCocktail';
-
-// Connessione al server MySQL
-$conn = new mysqli($host, $user, $pass);
-
-// Controllo connessione
-if ($conn->connect_error) {
-    die("Connessione fallita: " . $conn->connect_error);
-}
+include 'db_connect.php';
 
 // Funzione per eseguire il file SQL
 function importSQL($filename, $conn, $dbName) {
@@ -55,7 +42,7 @@ if ($dbExists->num_rows > 0) {
 
 // Query per i drink più recensiti
 $popolari_query = "
-    SELECT c.id, c.nome, c.descrizione, c.immagine, COUNT(r.id) AS review_count
+    SELECT c.id, c.nome, c.descrizione, c.immagine, COUNT(r.id) AS review_count, AVG(r.valutazione) AS valutazione_media
     FROM cocktail c
     LEFT JOIN recensione r ON c.id = r.id_cocktail
     GROUP BY c.id
@@ -69,7 +56,7 @@ if (!$popolari_result) {
 
 // Query per le nuove uscite
 $nuove_uscite_query = "
-    SELECT id, nome, descrizione, immagine, data_pubblicazione
+    SELECT id, nome, descrizione, immagine, data_pubblicazione, AVG(valutazione) AS valutazione_media
     FROM cocktail
     ORDER BY data_pubblicazione DESC
     LIMIT 3
@@ -158,22 +145,22 @@ if (!$nuove_uscite_result) {
     </div>
 
     <div class="section">
-    <h2>Popolari</h2>
-    <div class="drink-container">
-        <?php while($row = $popolari_result->fetch_assoc()): ?>
-            <div class="drink">
-                <h3><?php echo htmlspecialchars($row['nome']); ?></h3>
-                <img src="<?php echo htmlspecialchars($row['immagine']); ?>" alt="<?php echo htmlspecialchars($row['nome']); ?>">
-                <p><?php echo htmlspecialchars($row['descrizione']); ?></p>
-                <form method="GET" action="visualizza_recensioni.php">
-                    <input type="hidden" name="cocktail_id" value="<?php echo $row['id']; ?>">
-                    <button type="submit">Visualizza Recensioni</button>
-                </form>
-            </div>
-        <?php endwhile; ?>
+        <h2>Popolari</h2>
+        <div class="drink-container">
+            <?php while($row = $popolari_result->fetch_assoc()): ?>
+                <div class="drink">
+                    <h3><?php echo htmlspecialchars($row['nome']); ?></h3>
+                    <img src="<?php echo htmlspecialchars($row['immagine']); ?>" alt="<?php echo htmlspecialchars($row['nome']); ?>">
+                    <p><?php echo htmlspecialchars($row['descrizione']); ?></p>
+                    <p>Media valutazioni: <?php echo round($row['valutazione_media'], 1); ?></p>
+                    <form method="GET" action="visualizza_recensioni.php">
+                        <input type="hidden" name="cocktail_id" value="<?php echo $row['id']; ?>">
+                        <button type="submit">Visualizza Recensioni</button>
+                    </form>
+                </div>
+            <?php endwhile; ?>
+        </div>
     </div>
-</div>
-
 
     <div class="section">
         <h2>Nuove Uscite</h2>
@@ -183,9 +170,11 @@ if (!$nuove_uscite_result) {
                     <h3><?php echo htmlspecialchars($row['nome']); ?></h3>
                     <img src="<?php echo htmlspecialchars($row['immagine']); ?>" alt="<?php echo htmlspecialchars($row['nome']); ?>">
                     <p><?php echo htmlspecialchars($row['descrizione']); ?></p>
+                    <p>Media valutazioni: <?php echo round($row['valutazione_media'], 2); ?></p>
                     <form method="GET" action="visualizza_recensioni.php">
-                    <input type="hidden" name="cocktail_id" value="<?php echo $row['id']; ?>">
-                    <button type="submit">Visualizza Recensioni</button>
+                        <input type="hidden" name="cocktail_id" value="<?php echo $row['id']; ?>">
+                        <button type="submit">Visualizza Recensioni</button>
+                    </form>
                 </div>
             <?php endwhile; ?>
         </div>

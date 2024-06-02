@@ -76,7 +76,7 @@
         </div>
     </div>
     <a href="index.php" class="home-link">Home</a>
-    <a href="aggiungi_recensione.php?cocktail_id=<?php echo $cocktail_id; ?>" class="add-review-btn">Aggiungi Recensione</a>
+    <a href="aggiungi_recensione.php?cocktail_id=<?php echo $_GET['cocktail_id']; ?>" class="add-review-btn">Aggiungi Recensione</a>
     <div class="container">
         <h2>Recensioni dei Cocktail</h2>
         <?php
@@ -118,7 +118,7 @@
                 <h3><?php echo htmlspecialchars($row['nome_cocktail']); ?></h3>
                 <p><strong>Valutazione:</strong> <?php echo htmlspecialchars($row['valutazione']); ?></p>
                 <p><strong>Commento:</strong> <?php echo htmlspecialchars($row['commento']); ?></p>
-                <p><strong>Data Recensione:</strong> <?php echo htmlspecialchars($row['data_recensione']); ?></p>
+                <p><strong>Data Recensione:</strong> <?php echo date('d-m-Y', strtotime($row['data_recensione'])); ?></p>
             </div>
         <?php endwhile; ?>
     </div>

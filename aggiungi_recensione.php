@@ -56,7 +56,7 @@
             background-color: #007BFF;
             color: white;
             border-radius: 5px;
-}
+        }
         .home-link:hover {
             background-color: #0056b3;
         }

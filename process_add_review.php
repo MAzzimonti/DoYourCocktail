@@ -14,14 +14,7 @@ if (!isset($_POST['valutazione']) || !isset($_POST['commento']) || !isset($_POST
 }
 
 // Connessione al database
-$host = '127.0.0.1';
-$user = 'root';
-$pass = '';
-$dbName = 'DoYourCocktail';
-$conn = new mysqli($host, $user, $pass, $dbName);
-if ($conn->connect_error) {
-    die("Connessione fallita: " . $conn->connect_error);
-}
+include 'db_connect.php';
 
 // Preparazione delle variabili
 $valutazione = $_POST['valutazione'];
@@ -29,6 +22,8 @@ $commento = $_POST['commento'];
 $cocktail_id = $_POST['cocktail_id'];
 $user_id = $_SESSION['user_id'];
 $data_recensione = date('Y-m-d');
+
+echo $cocktail_id;
 
 // Preparazione della query per l'inserimento della recensione nel database
 $query = "INSERT INTO recensione (valutazione, commento, data_recensione, id_cocktail, id_utente) VALUES (?, ?, ?, ?, ?)";
