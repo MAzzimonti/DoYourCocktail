@@ -9,22 +9,30 @@ if (!isset($_SESSION['user_id'])) {
 
 include 'db_connect.php';
 
-// Preparazione della query per recuperare le recensioni del cocktail specificato, ordinate per data decrescente
+// Ottenere l'ID del cocktail
 $cocktail_id = $_GET['cocktail_id'];
-$query = "SELECT c.nome AS nome_cocktail, r.valutazione, r.commento, DATE_FORMAT(r.data_recensione, '%d-%m-%Y') AS data_recensione_formatted 
+
+// Preparazione della query per recuperare il nome del cocktail
+$query_nome = "SELECT nome FROM cocktail WHERE id = $cocktail_id";
+$result_nome = $conn->query($query_nome);
+
+if (!$result_nome || $result_nome->num_rows === 0) {
+    die("Errore o cocktail non trovato: " . $conn->error);
+}
+
+// Estrarre il nome del cocktail
+$row_nome = $result_nome->fetch_assoc();
+$nome_cocktail = htmlspecialchars($row_nome['nome']);
+
+// Preparazione della query per recuperare le recensioni del cocktail specificato, ordinate per data decrescente
+$query = "SELECT r.valutazione, r.commento, DATE_FORMAT(r.data_recensione, '%d-%m-%Y') AS data_recensione_formatted 
           FROM recensione r 
-          JOIN cocktail c ON r.id_cocktail = c.id 
           WHERE r.id_cocktail = $cocktail_id 
           ORDER BY r.data_recensione DESC";
 $result = $conn->query($query);
 
 if (!$result) {
     die("Errore nella query: " . $conn->error);
-}
-
-// Estrarre il nome del cocktail una sola volta
-if ($row = $result->fetch_assoc()) {
-    $nome_cocktail = htmlspecialchars($row['nome_cocktail']);
 }
 ?>
 <!DOCTYPE html>
@@ -101,7 +109,7 @@ if ($row = $result->fetch_assoc()) {
 <body>
     <div class="header">
         <div class="logo">
-            <img src="logo\logo.png" alt="Logo">
+            <img src="logo/logo.png" alt="Logo">
         </div>
     </div>
     <a href="index.php" class="home-link">Home</a>
