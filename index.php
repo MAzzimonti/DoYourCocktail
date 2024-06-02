@@ -54,11 +54,13 @@ if (!$popolari_result) {
     die("Errore nella query: " . $conn->error);
 }
 
-// Query per le nuove uscite
+// Query per le nuove uscite con media delle valutazioni
 $nuove_uscite_query = "
-    SELECT id, nome, descrizione, immagine, data_pubblicazione, AVG(valutazione) AS valutazione_media
-    FROM cocktail
-    ORDER BY data_pubblicazione DESC
+    SELECT c.id, c.nome, c.descrizione, c.immagine, c.data_pubblicazione, AVG(r.valutazione) AS valutazione_media
+    FROM cocktail c
+    LEFT JOIN recensione r ON c.id = r.id_cocktail
+    GROUP BY c.id
+    ORDER BY c.data_pubblicazione DESC
     LIMIT 3
 ";
 $nuove_uscite_result = $conn->query($nuove_uscite_query);
@@ -170,7 +172,7 @@ if (!$nuove_uscite_result) {
                     <h3><?php echo htmlspecialchars($row['nome']); ?></h3>
                     <img src="<?php echo htmlspecialchars($row['immagine']); ?>" alt="<?php echo htmlspecialchars($row['nome']); ?>">
                     <p><?php echo htmlspecialchars($row['descrizione']); ?></p>
-                    <p>Media valutazioni: <?php echo round($row['valutazione_media'], 2); ?></p>
+                    <p>Media valutazioni: <?php echo round($row['valutazione_media'], 1); ?></p>
                     <form method="GET" action="visualizza_recensioni.php">
                         <input type="hidden" name="cocktail_id" value="<?php echo $row['id']; ?>">
                         <button type="submit">Visualizza Recensioni</button>
