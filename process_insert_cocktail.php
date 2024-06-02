@@ -28,7 +28,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $query = "INSERT INTO cocktail (nome, descrizione, immagine, data_pubblicazione) VALUES ('$nome', '$descrizione', '$immagine', '$data_pubblicazione')";
 
     if ($conn->query($query) === TRUE) {
-        echo "Cocktail inserito con successo.";
+        // Reindirizzamento alla home
+        header('Location: index.php');
+        exit();
     } else {
         echo "Errore: " . $query . "<br>" . $conn->error;
     }
