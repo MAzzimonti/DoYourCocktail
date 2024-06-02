@@ -3,7 +3,7 @@ session_start();
 $servername = "localhost";
 $username = "root";
 $password = "";
-$dbname = "DoYourCocktail"; // Sostituisci con il nome del tuo database
+$dbname = "DoYourCocktail";
 
 // Creazione connessione
 $conn = new mysqli($servername, $username, $password, $dbname);
@@ -14,28 +14,17 @@ if ($conn->connect_error) {
 }
 
 $search = isset($_GET['search']) ? $_GET['search'] : '';
-$rating = isset($_GET['rating']) ? $_GET['rating'] : '';
 
-$sql = "SELECT cocktail.nome, cocktail.descrizione, cocktail.immagine, AVG(recensione.valutazione) as media_valutazione 
+$sql = "SELECT cocktail.id, cocktail.nome, cocktail.descrizione, cocktail.immagine, AVG(recensione.valutazione) as valutazione
         FROM cocktail 
         LEFT JOIN recensione ON cocktail.id = recensione.id_cocktail
-        WHERE cocktail.nome LIKE ? ";
-
-if ($rating != '') {
-    $sql .= "HAVING media_valutazione >= ?";
-}
-
-$sql .= " GROUP BY cocktail.id";
+        WHERE cocktail.nome LIKE ?
+        GROUP BY cocktail.id";
 
 $stmt = $conn->prepare($sql);
 
-if ($rating != '') {
-    $search_param = "%" . $search . "%";
-    $stmt->bind_param("sd", $search_param, $rating);
-} else {
-    $search_param = "%" . $search . "%";
-    $stmt->bind_param("s", $search_param);
-}
+$search_param = "%" . $search . "%";
+$stmt->bind_param("s", $search_param);
 
 $stmt->execute();
 $result = $stmt->get_result();
@@ -124,14 +113,6 @@ $result = $stmt->get_result();
         <form method="GET" action="">
             <div class="search-bar">
                 <input type="text" name="search" placeholder="Cerca cocktail..." value="<?php echo htmlspecialchars($search); ?>">
-                <select name="rating">
-                    <option value="">Valutazione minima</option>
-                    <option value="1" <?php if ($rating == '1') echo 'selected'; ?>>1</option>
-                    <option value="2" <?php if ($rating == '2') echo 'selected'; ?>>2</option>
-                    <option value="3" <?php if ($rating == '3') echo 'selected'; ?>>3</option>
-                    <option value="4" <?php if ($rating == '4') echo 'selected'; ?>>4</option>
-                    <option value="5" <?php if ($rating == '5') echo 'selected'; ?>>5</option>
-                </select>
                 <button type="submit">Cerca</button>
             </div>
         </form>
@@ -144,7 +125,11 @@ $result = $stmt->get_result();
                     echo '<h3>' . htmlspecialchars($row['nome']) . '</h3>';
                     echo '<img src="' . htmlspecialchars($row['immagine']) . '" alt="' . htmlspecialchars($row['nome']) . '">';
                     echo '<p>' . htmlspecialchars($row['descrizione']) . '</p>';
-                    echo '<p>Valutazione media: ' . round($row['media_valutazione'], 1) . '</p>';
+                    echo '<p>Valutazione: ' . round($row['valutazione'], 1) . '</p>';
+                    echo '<form method="GET" action="visualizza_recensioni.php">';
+                    echo '<input type="hidden" name="cocktail_id" value="' . htmlspecialchars($row['id']) . '">';
+                    echo '<button type="submit">Visualizza Recensioni</button>';
+                    echo '</form>';
                     echo '</div>';
                 }
             } else {

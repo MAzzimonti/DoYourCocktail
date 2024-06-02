@@ -2,7 +2,7 @@
 session_start();
 
 // Configurazione del database
-$host = '127.0.0.1'; // Usa 127.0.0.1 per escludere problemi di risoluzione dei nomi
+$host = 'localhost';
 $user = 'root';
 $pass = '';
 $dbName = 'DoYourCocktail';
