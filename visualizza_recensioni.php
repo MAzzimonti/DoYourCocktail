@@ -42,7 +42,7 @@
             background-color: #0056b3;
         }
         .add-review-btn {
-            position: fixed;
+            position: absolute;
             top: 20px; /* Distanza dal bordo superiore della finestra */
             left: 50%; /* Centro orizzontale */
             transform: translateX(-50%); /* Centra il bottone orizzontalmente */
