@@ -106,7 +106,7 @@
 
         // Preparazione della query per recuperare le recensioni del cocktail specificato
         $cocktail_id = $_GET['cocktail_id'];
-        $query = "SELECT c.nome AS nome_cocktail, r.valutazione, r.commento, r.data_recensione FROM recensione r JOIN cocktail c ON r.id_cocktail = c.id WHERE r.id_cocktail = $cocktail_id";
+        $query = "SELECT c.nome AS nome_cocktail, r.valutazione, r.commento, r.data_recensione FROM recensione r JOIN cocktail c ON r.id_cocktail = c.id WHERE r.id_cocktail = $cocktail_id ORDER BY data_recensione DESC";
         $result = $conn->query($query);
 
         if (!$result) {
