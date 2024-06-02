@@ -17,9 +17,13 @@ if ($conn->connect_error) {
     die("Connessione fallita: " . $conn->connect_error);
 }
 
-// Preparazione della query per recuperare le recensioni del cocktail specificato
+// Preparazione della query per recuperare le recensioni del cocktail specificato, ordinate per data decrescente
 $cocktail_id = $_GET['cocktail_id'];
-$query = "SELECT c.nome AS nome_cocktail, r.valutazione, r.commento, r.data_recensione FROM recensione r JOIN cocktail c ON r.id_cocktail = c.id WHERE r.id_cocktail = $cocktail_id";
+$query = "SELECT c.nome AS nome_cocktail, r.valutazione, r.commento, DATE_FORMAT(r.data_recensione, '%d-%m-%Y') AS data_recensione_formatted 
+          FROM recensione r 
+          JOIN cocktail c ON r.id_cocktail = c.id 
+          WHERE r.id_cocktail = $cocktail_id 
+          ORDER BY r.data_recensione DESC";
 $result = $conn->query($query);
 
 if (!$result) {
@@ -116,7 +120,7 @@ if ($row = $result->fetch_assoc()) {
             <div class="review">
                 <p><strong>Valutazione:</strong> <?php echo htmlspecialchars($row['valutazione']); ?></p>
                 <p><strong>Commento:</strong> <?php echo htmlspecialchars($row['commento']); ?></p>
-                <p><strong>Data Recensione:</strong> <?php echo htmlspecialchars($row['data_recensione']); ?></p>
+                <p><strong>Data Recensione:</strong> <?php echo htmlspecialchars($row['data_recensione_formatted']); ?></p>
             </div>
         <?php endwhile; ?>
     </div>
