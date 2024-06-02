@@ -30,8 +30,8 @@
         }
         .home-link {
             position: absolute;
-            top: 20px;
-            right: 150px; /* Modificato per fare spazio al bottone di aggiunta recensione */
+            top: 20px; /* Distanza dal bordo superiore della finestra */
+            right: 20px; /* Distanza dal bordo destro della finestra */
             text-decoration: none;
             padding: 10px 20px;
             background-color: #007BFF;
@@ -43,8 +43,9 @@
         }
         .add-review-btn {
             position: fixed;
-            top: 20px;
-            left: 20px; /* Spostato a sinistra */
+            top: 20px; /* Distanza dal bordo superiore della finestra */
+            left: 50%; /* Centro orizzontale */
+            transform: translateX(-50%); /* Centra il bottone orizzontalmente */
             display: block;
             padding: 10px 20px;
             background-color: #007BFF;
@@ -55,6 +56,16 @@
         }
         .add-review-btn:hover {
             background-color: #0056b3;
+        }
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px;
+            background-color: #f8f9fa;
+        }
+        .header img {
+            height: 50px;
         }
     </style>
 </head>

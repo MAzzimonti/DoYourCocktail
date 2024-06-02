@@ -37,6 +37,30 @@
         button:hover {
             background-color: #0056b3;
         }
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px;
+            background-color: #f8f9fa;
+        }
+        .header img {
+            height: 50px;
+        }
+        .home-link {
+            position: absolute;
+            top: 20px; /* Distanza dal bordo superiore della finestra */
+            right: 20px; /* Distanza dal bordo destro della finestra */
+            text-decoration: none;
+            padding: 10px 20px;
+            background-color: #007BFF;
+            color: white;
+            border-radius: 5px;
+}
+        .home-link:hover {
+            background-color: #0056b3;
+        }
+        
     </style>
 </head>
 <body>
@@ -47,6 +71,7 @@
     </div>
     <div class="container">
         <h2>Aggiungi Recensione</h2>
+        <a href="index.php" class="home-link">Home</a>
         <form method="POST" action="process_add_review.php">
             <div class="form-group">
                 <label for="valutazione">Valutazione (da 1 a 5)</label>
