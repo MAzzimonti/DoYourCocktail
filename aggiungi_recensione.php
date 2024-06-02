@@ -40,6 +40,11 @@
     </style>
 </head>
 <body>
+    <div class="header">
+        <div class="logo">
+            <img src="logo\logo.png" alt="Logo">
+        </div>
+    </div>
     <div class="container">
         <h2>Aggiungi Recensione</h2>
         <form method="POST" action="process_add_review.php">

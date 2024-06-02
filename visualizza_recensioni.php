@@ -59,6 +59,11 @@
     </style>
 </head>
 <body>
+    <div class="header">
+        <div class="logo">
+            <img src="logo\logo.png" alt="Logo">
+        </div>
+    </div>
     <a href="index.php" class="home-link">Home</a>
     <a href="aggiungi_recensione.php?cocktail_id=<?php echo $cocktail_id; ?>" class="add-review-btn">Aggiungi Recensione</a>
     <div class="container">

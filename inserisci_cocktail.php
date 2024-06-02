@@ -3,6 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <div class="header">
+        <div class="logo">
+            <img src="logo\logo.png" alt="Logo">
+        </div>
+    </div>
     <title>Inserisci Cocktail - DoYourCocktail</title>
     <style>
         body { font-family: Arial, sans-serif; }

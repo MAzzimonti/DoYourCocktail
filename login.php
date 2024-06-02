@@ -45,6 +45,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     <style>
         body { font-family: Arial, sans-serif; }
         .header { display: flex; justify-content: space-between; align-items: center; padding: 10px; background-color: #f8f9fa; }
+        .header img { height: 50px; }
         .form-container { max-width: 400px; margin: 50px auto; padding: 20px; border: 1px solid #ccc; border-radius: 10px; background-color: #fff; }
         .form-group { margin-bottom: 15px; }
         .form-group label { display: block; margin-bottom: 5px; }
@@ -58,7 +59,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 </head>
 <body>
     <div class="header">
-        <h1>DoYourCocktail</h1>
+        <div class="logo">
+            <img src="logo/logo.png" alt="Logo">
+        </div>
         <div class="home-button">
             <a href="index.php"><button>Home</button></a>
         </div>

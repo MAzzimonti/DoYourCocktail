@@ -143,8 +143,7 @@ if (!$nuove_uscite_result) {
 <body>
     <div class="header">
         <div class="logo">
-            <img src="logo.png" alt="Logo">
-            <span>DoYourCocktail</span>
+            <img src="logo\logo.png" alt="Logo">
         </div>
         <div class="auth-buttons">
             <?php if (isset($_SESSION['user_id'])): ?>

@@ -39,11 +39,12 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     <title>Registrazione - DoYourCocktail</title>
     <style>
         body { font-family: Arial, sans-serif; }
-        .header { display: flex; justify-content: space-between; align-items: center; }
-        .form-container { max-width: 400px; margin: 50px auto; padding: 20px; border: 1px solid #ccc; border-radius: 10px; }
+        .header { display: flex; justify-content: space-between; align-items: center; padding: 10px; background-color: #f8f9fa; }
+        .header img { height: 50px; }
+        .form-container { max-width: 400px; margin: 50px auto; padding: 20px; border: 1px solid #ccc; border-radius: 10px; background-color: #fff; }
         .form-group { margin-bottom: 15px; }
         .form-group label { display: block; margin-bottom: 5px; }
-        .form-group input { width: calc(100% - 40px); padding: 10px; margin-right: -40px; }
+        .form-group input { width: calc(100% - 40px); padding: 10px; }
         .form-group .show-password { width: 40px; display:flex; align-items: center; justify-content: center;}
         .home-button { margin-top: 20px; }
         .home-button a { text-decoration: none; }
@@ -53,7 +54,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 </head>
 <body>
     <div class="header">
-        <h1>DoYourCocktail</h1>
+        <div class="logo">
+            <img src="logo/logo.png" alt="Logo">
+        </div>
         <div class="home-button">
             <a href="index.php"><button>Home</button></a>
         </div>
