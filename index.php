@@ -2,43 +2,7 @@
 session_start();
 include 'db_connect.php';
 
-// Funzione per eseguire il file SQL
-function importSQL($filename, $conn, $dbName) {
-    if (!$conn->select_db($dbName)) {
-        die("Errore nella selezione del database: " . $conn->error);
-    }
-
-    $sql = file_get_contents($filename);
-    if ($sql === false) {
-        die("Impossibile leggere il file $filename");
-    }
-
-    $queries = explode(';', $sql);
-    foreach ($queries as $query) {
-        $query = trim($query);
-        if (!empty($query)) {
-            if ($conn->query($query) === false) {
-                echo "Errore nell'esecuzione della query: " . $conn->error . "<br>";
-            }
-        }
-    }
-    echo "Importazione completata con successo.";
-}
-
-// Verifica se il database esiste
-$dbExists = $conn->query("SELECT SCHEMA_NAME FROM INFORMATION_SCHEMA.SCHEMATA WHERE SCHEMA_NAME = '$dbName'");
-if ($dbExists->num_rows > 0) {
-    $conn->select_db($dbName);
-} else {
-    if ($conn->query("CREATE DATABASE $dbName") === true) {
-        echo "Database '$dbName' creato con successo. Procedo con l'importazione.<br>";
-        $conn->select_db($dbName);
-        $filename = 'backup.sql';
-        importSQL($filename, $conn, $dbName);
-    } else {
-        die("Errore nella creazione del database: " . $conn->error);
-    }
-}
+// Il resto del tuo codice per le query e la visualizzazione della pagina
 
 // Query per i drink più recensiti
 $popolari_query = "
@@ -68,6 +32,7 @@ if (!$nuove_uscite_result) {
     die("Errore nella query: " . $conn->error);
 }
 ?>
+
 <!DOCTYPE html>
 <html lang="it">
 <head>
